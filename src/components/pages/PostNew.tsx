@@ -34,7 +34,8 @@ export const PostNew: VFC = memo(() => {
         }else{
             var params = new URLSearchParams();
             params.append('keyword', keyword)
-            axios.post("http://localhost:8080/place/index", params)
+            const url: string = process.env.REACT_APP_API_URL + "/place/index"
+            axios.post(url , params)
             .then((res) => {
                 if(res.status === 200){
                     console.log("success")

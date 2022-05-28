@@ -53,7 +53,7 @@ export const PostModal = memo((props: Props) => {
         params.append('username', loginUser!);
         params.append('date', date);
         console.log( "params: " + params);
-        axios.post("http://localhost:8080/post/new",params)
+        axios.post("http://{process.env.REACT_APP_GOOGLE!}/post/new",params)
         .then((res) => {
             if(res.status == 200){
                 console.log("post success")

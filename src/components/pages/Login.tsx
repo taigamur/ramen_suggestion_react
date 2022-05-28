@@ -29,7 +29,8 @@ export const Login: VFC = memo(() => {
         var params = new URLSearchParams();
         params.append('name',userName)
         params.append('password', password)
-        axios.post('http://localhost:8080/login', params)
+        const url: string = process.env.REACT_APP_API_URL + "/login"
+        axios.post(url, params)
         .then((res) => {
             if(res.status == 200){
                 console.log(res.data.name)

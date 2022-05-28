@@ -10,7 +10,8 @@ export const getAllPlaces = () => {
 
     const getPlaces = useCallback(() => {
         // axios.get<Array<Place>>("https://jsonplaceholder.typicode.com/users")
-        axios.get<Array<Place>>("http://localhost:8080/places/index")
+        const url: string = process.env.REACT_APP_API_URL + "/places/index"
+        axios.get<Array<Place>>(url)
         .then((res) => {
             setPlaces(res.data)
             // showMessage({title: "ユーザーの取得に成功", status: "error"})

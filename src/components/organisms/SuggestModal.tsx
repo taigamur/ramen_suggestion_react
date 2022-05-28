@@ -23,7 +23,9 @@ export const SuggestModal = memo((props: Props) => {
 
     const onClickSuggest = () => {
         setAddress("茨城県つくば市天久保２丁目６−１")
-        axios.get("http://localhost:8080/place/suggest", {params: {username: loginUser}})
+        const url: string = process.env.REACT_APP_API_URL + "/place/suggest"
+        console.log(url)
+        axios.get(url, {params: {username: loginUser}})
         .then((res) => {
             if(res.status === 200){
                 console.log("success")
@@ -50,7 +52,7 @@ export const SuggestModal = memo((props: Props) => {
                 { place ?
                     <>
                     <Heading>{place!.place.name}</Heading>
-                    <Heading>{place!.value}</Heading>
+                    {/* <Heading>{place!.value}</Heading> */}
                     <Map address={place!.place.address} name={place!.place.name} />
                     </>
                 : <></>}

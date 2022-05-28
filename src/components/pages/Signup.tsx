@@ -20,7 +20,8 @@ export const Signup: VFC = memo(() => {
         var params = new URLSearchParams();
         params.append('name', userName)
         params.append('password', password)
-        axios.post("http://localhost:8080/signup", params)
+        const url: string = process.env.REACT_APP_API_URL + "/signup"
+        axios.post(url, params)
         .then((res) => {
             if(res.status == 200){
                 showMessage({title: "ユーザー登録完了", status: "success"});

@@ -25,8 +25,6 @@ export const UserInfo: VFC = memo(() => {
     return(
         <>
             <p>ユーザー情報</p>
-            
-
             <PrimaryButton onClick={onClick}>ログアウト</PrimaryButton>
         </>
     )

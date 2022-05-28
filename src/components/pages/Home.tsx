@@ -21,7 +21,8 @@ export const Home: VFC = memo(() => {
 
     const getPosts = (user: string) => {
         console.log("user: " + loginUser)
-        axios.get<Array<Post>>("http://localhost:8080/post/index", {params: {username: loginUser}})
+        const url: string = process.env.REACT_APP_API_URL + "/post/index"
+        axios.get<Array<Post>>(url, {params: {username: loginUser}})
         .then((res) => {
             console.log(res)
             setPosts(res.data)
