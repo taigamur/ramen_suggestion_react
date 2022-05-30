@@ -19,7 +19,7 @@ export const UserInfo: VFC = memo(() => {
         removeCookie("user")
         setLoginUser(null)
         showMessage({title: "ログアウトしました", status:"success"})
-        history.push("/login")
+        history.push("/")
     }
 
     return(

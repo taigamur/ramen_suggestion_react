@@ -74,6 +74,6 @@ export const PrivateHeader: VFC = memo(() => {
         );
     }else{
         // showMessage({title: "ログインしてください", status:"error"})
-        return <Redirect to="/login"/>;
+        return <Redirect to="/"/>;
     }
 })
