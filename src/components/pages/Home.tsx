@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 import { useDisclosure, Button, Wrap, WrapItem, Box } from '@chakra-ui/react'
 import axios from "axios";
 
-import { useLoginUser } from "../../hooks/useLoginUser";
+import { useLoginUser } from "../../providers/LoginUserProvider";
 import { SuggestModal } from "../organisms/SuggestModal";
 import { Post } from "../../types/post"
 import { PostItem } from "../molecules/PostItem"
@@ -22,6 +22,7 @@ export const Home: VFC = memo(() => {
     const getPosts = (user: string) => {
         console.log("user: " + loginUser)
         const url: string = process.env.REACT_APP_API_URL + "/post/index"
+
         axios.get<Array<Post>>(url, {params: {username: loginUser}})
         .then((res) => {
             console.log(res)

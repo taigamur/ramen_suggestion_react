@@ -1,11 +1,13 @@
 import {memo, VFC, useState, ChangeEvent, useEffect } from "react"
-import { Box, Button, Divider, Flex, Heading, Input, Stack, Link } from "@chakra-ui/react"
+import { Box, Divider, Flex, Heading, Input, Stack, Link } from "@chakra-ui/react"
 import { PrimaryButton} from "../atoms/button/PrimaryButton"
 import axios from "axios";
 import { Redirect, useHistory } from "react-router-dom";
 import { useMessage } from "../../hooks/useMessage";
-import { useLoginUser } from "../../hooks/useLoginUser";
-import { useCookies } from "react-cookie";
+import { useLoginUser } from "../../providers/LoginUserProvider";
+import { signInWithEmailAndPassword } from "firebase/auth";
+
+import { firebaseApp } from "../../firebase"
 
 
 export const Login: VFC = memo(() => {
@@ -17,51 +19,34 @@ export const Login: VFC = memo(() => {
 
     const [loading, setLoading] = useState(false)
 
-    const [userName, setUserName] = useState("")
+    const [email, setEmail] = useState("")
+    const onChangeEmail = (e: ChangeEvent<HTMLInputElement>) => setEmail(e.target.value);
+
     const [password, setPassword] = useState("")
-    const onChangeUserName = (e: ChangeEvent<HTMLInputElement>) => setUserName(e.target.value);
     const onChangePassword = (e: ChangeEvent<HTMLInputElement>) => setPassword(e.target.value);
 
-    const [cookies, setCookie] = useCookies();
 
     const onClickLoginRequest = () => {
         setLoading(true);
-        var params = new URLSearchParams();
-        params.append('name',userName)
-        params.append('password', password)
-        const url: string = process.env.REACT_APP_API_URL + "/login"
-        axios.post(url, params)
-        .then((res) => {
-            if(res.status == 200){
-                console.log(res.data.name)
-                showMessage({title: "ログインしました", status: "success"});
-                setLoading(false);
-                setLoginUser(res.data.name)
-                setCookie("user",res.data.name)
-                
-                history.push("/home");
-            }
-        }).catch((res) => {
-            console.log(res)
+        signInWithEmailAndPassword(firebaseApp.fireauth, email, password)
+        .then(() => {
+            console.log("ok")
+            setLoginUser(email)
+            setLoading(false);
+            showMessage({title: "ログインしました", status: "success"});
+            history.push("/home")
+        })
+        .catch(err => {
+            console.log("err")
+            console.log(err)
             showMessage({title: "入力に誤りがあります", status:"error"});
             setLoading(false);
         })
     }
 
-    const onClickSignup = () => {
-        history.push("/signup")
-    }
-
     console.log("loginUser: " + loginUser)
 
-    let authentication: boolean = false;
     if(loginUser){
-        authentication = true;
-    }else if(cookies.user){
-        authentication = true;
-    }
-
-    if(authentication){
         return <Redirect to="/home"/>
     }else{
         return(
@@ -71,13 +56,12 @@ export const Login: VFC = memo(() => {
                         <Heading as="h1" size="lg" textAlign="center">Ramen Suggestion</Heading>
                         <Divider my={4}/>
                         <Stack spacing={6} py={4} px={10}>
-                            <Input placeholder="ユーザーネーム" value={userName} onChange={onChangeUserName}  />
+                            <Input placeholder="メールアドレス" value={email} onChange={onChangeEmail}  />
                             <Input placeholder="パスワード" value={password} onChange={onChangePassword}/>
-                            {/* <PrimaryButton disabled={true} loading={true}>ログイン</PrimaryButton> */}
-                            <PrimaryButton disabled={userName === ""} loading={loading} onClick={onClickLoginRequest}>ログイン</PrimaryButton>
+                            <PrimaryButton disabled={email === ""} loading={loading} onClick={onClickLoginRequest}>ログイン</PrimaryButton>
                         </Stack>
-                        <Box pt={2}>
-                            <Link href='/signup' color='teal.500'>
+                        <Box pt={2} align='right'>
+                            <Link href='/signup' color='teal.500' >
                                 新規登録はこちら
                             </Link>
                         </Box>

@@ -1,6 +1,6 @@
 import { memo, VFC, useState, ChangeEvent, useCallback } from "react"
 import { useHistory } from "react-router-dom";
-import { useLoginUser } from "../../hooks/useLoginUser";
+import { useLoginUser } from "../../providers/LoginUserProvider";
 
 import { Button, useDisclosure, FormControl, Input, Wrap, WrapItem, Box, Center, Heading  } from '@chakra-ui/react'
 

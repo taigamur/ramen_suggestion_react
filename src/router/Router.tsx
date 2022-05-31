@@ -16,15 +16,15 @@ export const Router = () => {
     return (
         <Switch>
             <LoginUserProvider>
-                <Route exact path="/"><Login/></Route>
                 <Route exact path="/home"><HeaderLayout><Home /></HeaderLayout></Route>
                 <Route exact path="/index"><HeaderLayout><Index /></HeaderLayout></Route>
-                <Route exact path="/signup"><Signup/></Route>
                 <Route exact path="/places"><HeaderLayout><Places/></HeaderLayout></Route>
                 <Route exact path="/user/info"><HeaderLayout><UserInfo /></HeaderLayout></Route>
                 <Route exact path="/user/:username/post"><HeaderLayout><Post/></HeaderLayout></Route>
                 <Route exact path="/post/new"><HeaderLayout><PostNew /></HeaderLayout></Route>
-                {/* <Route exact path="/user/:username/place"><Place/></Route> */}
+
+                <Route exact path="/"><Login/></Route>
+                <Route exact path="/signup"><Signup/></Route>
             </LoginUserProvider>
             <Route path="*"><Page404 /></Route>
         </Switch>

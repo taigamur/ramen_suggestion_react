@@ -1,6 +1,6 @@
 import {memo, VFC} from "react"
 import { useHistory, useLocation, useParams } from "react-router-dom";
-import { useLoginUser } from "../../hooks/useLoginUser";
+import { useLoginUser } from "../../providers/LoginUserProvider";
 
 
 export const Post: VFC = memo((props) => {

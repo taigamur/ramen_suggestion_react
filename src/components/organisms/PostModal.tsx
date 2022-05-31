@@ -3,7 +3,7 @@ import { Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody,
 import { useMessage } from "../../hooks/useMessage";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
-import { useLoginUser } from "../../hooks/useLoginUser";
+import { useLoginUser } from "../../providers/LoginUserProvider";
 import DatePicker from "react-datepicker"
 import { Map } from "../molecules/Map"
 import StarRatings from 'react-star-ratings';
@@ -53,7 +53,11 @@ export const PostModal = memo((props: Props) => {
         params.append('username', loginUser!);
         params.append('date', date);
         console.log( "params: " + params);
-        axios.post("http://{process.env.REACT_APP_GOOGLE!}/post/new",params)
+
+        console.log(process.env.REACT_APP_API_URL)
+        console.log("uri test")
+        const url: string = process.env.REACT_APP_API_URL + "/post/new"
+        axios.post(url,params)
         .then((res) => {
             if(res.status == 200){
                 console.log("post success")

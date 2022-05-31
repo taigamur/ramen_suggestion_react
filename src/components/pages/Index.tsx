@@ -1,5 +1,5 @@
 import {memo, VFC} from "react"
-import { useLoginUser } from "../../hooks/useLoginUser";
+import { useLoginUser } from "../../providers/LoginUserProvider";
 
 export const Index: VFC = memo(() => {
     

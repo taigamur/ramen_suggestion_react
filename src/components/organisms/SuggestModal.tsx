@@ -3,7 +3,7 @@ import { Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody,
 
 import { Map } from "../molecules/Map"
 import axios from "axios";
-import { useLoginUser } from "../../hooks/useLoginUser";
+import { useLoginUser } from "../../providers/LoginUserProvider";
 import { Suggest } from "../../types/suggest";
 
 type Props = {
