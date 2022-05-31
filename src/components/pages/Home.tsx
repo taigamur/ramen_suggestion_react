@@ -33,7 +33,7 @@ export const Home: VFC = memo(() => {
         })
     }
 
-    useEffect(() => getPosts(loginUser!),[loginUser])
+    useEffect(() => getPosts(loginUser!),[])
 
     return(
         <>
