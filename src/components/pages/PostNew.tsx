@@ -65,7 +65,7 @@ export const PostNew: VFC = memo(() => {
 
 
             <Wrap pt={10}>
-                {places.map((place) => (
+                {Array.from(places).map((place) => (
                     <WrapItem key={place.id}  width='100%' align='center'>
 
                         <PlaceItem id={place.id} name={place.name} address={place.address} onClick={onClickPlace}  />

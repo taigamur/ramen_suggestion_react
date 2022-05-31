@@ -16,7 +16,7 @@ export const SuggestModal = memo((props: Props) => {
 
     const { onClose, isOpen } = props;
     const [ address, setAddress ] = useState<string>("");
-    const [ place, setPlace ] = useState<Suggest>();
+    const [ place, setPlace ] = useState<Suggest | any>(null);
     const { loginUser } = useLoginUser();
 
 
@@ -51,9 +51,8 @@ export const SuggestModal = memo((props: Props) => {
             <ModalBody pb={6}>
                 { place ?
                     <>
-                    <Heading>{place!.place.name}</Heading>
-                    {/* <Heading>{place!.value}</Heading> */}
-                    <Map address={place!.place.address} name={place!.place.name} />
+                    <Heading>{place.place.name}</Heading>
+                    <Map address={place.place.address} name={place.place.name} />
                     </>
                 : <></>}
             </ModalBody>

@@ -50,7 +50,7 @@ export const Home: VFC = memo(() => {
 
             {posts ?
             <Wrap pt={5}>
-                {posts.map((post) => (
+                {Array.from(posts).map((post) => (
                     <WrapItem key={post.id} width='100%'>
                         <PostItem post={post}  />
                     </WrapItem>
