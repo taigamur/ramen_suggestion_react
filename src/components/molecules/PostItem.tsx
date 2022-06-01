@@ -1,6 +1,6 @@
 import { memo, VFC } from "react"
-import { Box, Stack, Text, Button, IconButton, Spacer, Flex, Center, Circle, useDisclosure, Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter } from "@chakra-ui/react"
-import { DeleteIcon, EditIcon } from "@chakra-ui/icons"
+import { Box, Text, Button, IconButton, Spacer, Flex, Circle, useDisclosure, Modal, ModalContent, ModalHeader, ModalFooter } from "@chakra-ui/react"
+import { DeleteIcon } from "@chakra-ui/icons"
 
 
 import { Post } from "../../types/post"

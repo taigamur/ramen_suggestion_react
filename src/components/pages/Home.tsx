@@ -19,7 +19,7 @@ export const Home: VFC = memo(() => {
 
     const onClickNewPost = useCallback(() => history.push("/post/new"),[]);
 
-    const getPosts = (user: string) => {
+    const getPosts = () => {
         console.log("user: " + loginUser)
         const url: string = process.env.REACT_APP_API_URL + "/post/index"
 
@@ -33,7 +33,7 @@ export const Home: VFC = memo(() => {
         })
     }
 
-    useEffect(() => getPosts(loginUser!),[])
+    useEffect(() => getPosts(),[])
 
     return(
         <>

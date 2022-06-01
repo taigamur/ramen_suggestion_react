@@ -15,49 +15,43 @@ export const PrivateHeader: VFC = memo(() => {
     const onClickHome = useCallback(() => history.push("/home"), []);
     const onClickA = useCallback(() => history.push("/user/info"), []);
     const onClickPlaces = useCallback(() => history.push("/places"), []);
-    const onClickC = useCallback(() => {
-        const url = "/user/" + loginUser + "/post"
-        history.push(url)
-    }, []);
+    // const onClickC = useCallback(() => {
+    //     const url = "/user/" + loginUser + "/post"
+    //     history.push(url)
+    // }, []);
 
     console.log(loginUser)
     
     if(loginUser){
         return (
             <>
-                <Flex as="nav" bg="teal.500" color="gray.50" align="center" justify="space-between" padding={{base: 3, md: 5}}>
-                    <Flex align="center" fontSize="sm" flexGrow={2} display={{base: "none", md:"flex"}}>
+                <Flex as="nav" bg="teal.500" color="gray.50" align="center" justify="center" padding={{base: 3, md: 5}}>
+                    <Box align='center' display={{base: "none", md:"flex"}}>
                         <Box pr={4}>
-                            <Button onClick={onClickA} variant='link' color="white" size="xs">ユーザー情報</Button>
+                            <Button onClick={onClickHome} variant='link' color="white" size="sm">ホーム</Button>
                         </Box>
                         <Box pr={4}>
-                            <Button onClick={onClickPlaces} variant='link' color="white" size="xs">MyPlaces</Button>
+                            <Button onClick={onClickPlaces} variant='link' color="white" size="sm">ポイント一覧</Button>
                         </Box>
                         <Box>
-                            <Button onClick={onClickC} variant='link' color="white" size="xs">LinkC</Button>
+                            <Button onClick={onClickA} variant='link' color="white" size="sm">ユーザー情報</Button>
                         </Box>
-                    </Flex>
-                    <HeaderListButton onOpen={onOpen}/>
+                    </Box>
+                    <Box display={{base:"block", md: "none"}}>
+                        <HeaderListButton onOpen={onOpen}/>
+                        <Drawer placement="right" size="xs" onClose={onClose} isOpen={isOpen} >
+                            <DrawerOverlay>
+                                <DrawerContent>
+                                    <DrawerBody p={0} bg="gray.100">
+                                        <Button w="100%" onClick={onClickHome}>ホーム</Button>
+                                        <Button w="100%" onClick={onClickPlaces}>ポイント一覧</Button>
+                                        <Button w="100%" onClick={onClickA}>ユーザー情報</Button>
+                                    </DrawerBody>
+                                </DrawerContent>
+                            </DrawerOverlay>
+                        </Drawer>
+                    </Box>
                 </Flex>
-                <Box display={{base:"block", md: "none"}}>
-                    <Drawer placement="right" size="xs" onClose={onClose} isOpen={isOpen} >
-                        <DrawerOverlay>
-                            <DrawerContent>
-                                <DrawerBody p={0} bg="gray.100">
-                                    <Button w="100%" onClick={onClickA}>
-                                        ユーザー情報
-                                    </Button>
-                                    <Button w="100%" onClick={onClickPlaces}>
-                                        Index
-                                    </Button>
-                                    <Button w="100%" onClick={onClickC}>
-                                        Page3
-                                    </Button>
-                                </DrawerBody>
-                            </DrawerContent>
-                        </DrawerOverlay>
-                    </Drawer>
-                </Box>
             </>
         );
     }else{
