@@ -8,7 +8,7 @@ https://tsukuba-ramen-suggest.com/
 
 ### ラーメン店のポイントの記録
 
-<img src="image/func1.png" width="60%">
+<img src="image/func1.png" width="90%">
 
 ### ラーメン店の提案
 
