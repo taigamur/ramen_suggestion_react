@@ -1,8 +1,10 @@
 import { Box, Button, FormControl, Heading, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay } from "@chakra-ui/react";
 import axios from "axios";
 import { memo, useState} from "react";
+import { useHistory } from "react-router-dom";
 import StarRatings from "react-star-ratings";
 import { useMessage } from "../../hooks/useMessage";
+import { usePoints } from "../../hooks/usePoints";
 import { useLoginUser } from "../../providers/LoginUserProvider";
 import { Point } from "../../types/point";
 import { Map } from "../molecules/Map"
@@ -18,12 +20,15 @@ export const PointModal = memo((props: Props) => {
     const { onClose, isOpen, point} = props;
     const { showMessage } = useMessage();
     const { loginUser } = useLoginUser();
+    const history = useHistory();
 
     const [ rating, setRating ] = useState(point.value)
     const changeRating = (rate: number ) => {
         setRating(rate)
     }
 
+    const { onSetPoints } = usePoints()
+ 
     const onClickSubmit = () => {
         if(rating < 1){
             showMessage({title: "1以上の値を選択してください", status:"error"})
@@ -39,6 +44,9 @@ export const PointModal = memo((props: Props) => {
                 .then((res) => {
                     if(res.status == 200){
                         showMessage({title: "登録しました", status:"success"})
+                        onSetPoints()
+                        onClose()
+                        history.push("/places")
                     }
                 }).catch(() => {
                     console.log("submit error")
@@ -54,6 +62,8 @@ export const PointModal = memo((props: Props) => {
                 .then((res) => {
                     if(res.status == 200){
                         showMessage({title: "投稿完了", status:"success"})
+                        onSetPoints()
+                        onClose()
                     }
                 }).catch(() => {
                     console.log("submit error")

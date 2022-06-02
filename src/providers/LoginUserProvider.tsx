@@ -1,8 +1,5 @@
 import { createContext, ReactNode, SetStateAction, Dispatch, useState, useEffect, useContext } from "react";
-import { Login } from "../components/pages/Login";
 import { firebaseApp } from "../firebase";
-
-import { User } from "../types/user";
 
 export type LoginUserContextType = {
     loginUser: string | any;
