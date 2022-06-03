@@ -26,9 +26,9 @@ export const PostItem: VFC<Props> = memo((props) => {
         axios.post(url,params)
         .then((res) => {
             if(res.status == 200){
-                console.log("delete")
                 showMessage({title: "削除しました", status:"success"})
-                window.location.reload()
+                history.push("/tmp")
+                history.push("/home")
             }
         }).catch(() => {
             console.log("false")

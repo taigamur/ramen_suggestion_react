@@ -31,7 +31,7 @@ export const PrivateHeader: VFC = memo(() => {
                             <Button onClick={onClickHome} variant='link' color="white" size="sm">ホーム</Button>
                         </Box>
                         <Box pr={4}>
-                            <Button onClick={onClickPlaces} variant='link' color="white" size="sm">ポイント一覧</Button>
+                            <Button onClick={onClickPlaces} variant='link' color="white" size="sm">ラーメン店の一覧</Button>
                         </Box>
                         <Box>
                             <Button onClick={onClickA} variant='link' color="white" size="sm">ユーザー情報</Button>

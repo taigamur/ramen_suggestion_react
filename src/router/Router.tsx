@@ -10,15 +10,20 @@ import { LoginUserProvider } from "../providers/LoginUserProvider";
 import { UserInfo } from "../components/pages/UserInfo"; 
 import { PublicPoint } from "../components/pages/PublicPoint"
 import { PostNew } from "../components/pages/PostNew"
+import { Tmp } from "../components/pages/tmp";
 
 export const Router = () => {
     return (
         <Switch>
             <LoginUserProvider>
+                {/* private */}
                 <Route exact path="/home"><HeaderLayout><Home /></HeaderLayout></Route>
                 <Route exact path="/places"><HeaderLayout><MyPoints/></HeaderLayout></Route>
                 <Route exact path="/user/info"><HeaderLayout><UserInfo /></HeaderLayout></Route>
                 <Route exact path="/post/new"><HeaderLayout><PostNew /></HeaderLayout></Route>
+                <Route exact path="/tmp"><HeaderLayout><Tmp /></HeaderLayout></Route>
+
+                {/* public */}
                 <Route exact path="/"><Login/></Route>
                 <Route exact path="/signup"><Signup/></Route>
                 <Route exact path="/user/:id/post/index"><PublicHeaderLayout><PublicPoint/></PublicHeaderLayout></Route>

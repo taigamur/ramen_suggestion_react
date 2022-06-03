@@ -1,7 +1,7 @@
 import { Box, Button, FormControl, Heading, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay } from "@chakra-ui/react";
 import axios from "axios";
 import { memo, useState} from "react";
-import { useHistory } from "react-router-dom";
+import { Redirect, useHistory } from "react-router-dom";
 import StarRatings from "react-star-ratings";
 import { useMessage } from "../../hooks/useMessage";
 import { usePoints } from "../../hooks/usePoints";
@@ -44,8 +44,10 @@ export const PointModal = memo((props: Props) => {
                 .then((res) => {
                     if(res.status == 200){
                         showMessage({title: "登録しました", status:"success"})
-                        onSetPoints()
                         onClose()
+ 
+                        onSetPoints()
+                        history.push("/tmp")
                         history.push("/places")
                     }
                 }).catch(() => {
@@ -62,8 +64,10 @@ export const PointModal = memo((props: Props) => {
                 .then((res) => {
                     if(res.status == 200){
                         showMessage({title: "投稿完了", status:"success"})
-                        onSetPoints()
                         onClose()
+                        onSetPoints()
+                        history.push("/tmp")
+                        history.replace("/places")
                     }
                 }).catch(() => {
                     console.log("submit error")

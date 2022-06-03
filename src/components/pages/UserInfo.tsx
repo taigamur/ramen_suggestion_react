@@ -3,12 +3,13 @@ import {memo, VFC} from "react"
 import { useHistory } from "react-router-dom";
 import { useLoginUser } from "../../providers/LoginUserProvider";
 import { useMessage } from "../../hooks/useMessage";
-import { PrimaryButton } from "../atoms/button/PrimaryButton";
 import { firebaseApp } from "../../firebase";
+import { Box, Button, Heading } from "@chakra-ui/react";
 export const UserInfo: VFC = memo(() => {
 
     const history = useHistory()
     const { setLoginUser } = useLoginUser();
+    const { loginUser } = useLoginUser();
 
     const { showMessage } = useMessage();
 
@@ -28,8 +29,16 @@ export const UserInfo: VFC = memo(() => {
 
     return(
         <>
-            <p>ユーザー情報</p>
-            <PrimaryButton onClick={onClickLogout}>ログアウト</PrimaryButton>
+            <Box align='center' pt={6}>
+                
+                <Button variant='solid' colorScheme='green' onClick={onClickLogout}>ログアウト</Button>
+
+                <Box pt={6}>
+                    <p>メールアドレス</p>
+                    <p>{loginUser}</p>
+                </Box>
+
+            </Box>
         </>
     )
 });

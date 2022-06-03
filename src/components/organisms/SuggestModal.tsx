@@ -11,26 +11,19 @@ type Props = {
     isOpen: boolean;
 }
 
-
 export const SuggestModal = memo((props: Props) => {
 
     const { onClose, isOpen } = props;
-    const [ address, setAddress ] = useState<string>("");
     const [ place, setPlace ] = useState<Suggest | any>(null);
     const { loginUser } = useLoginUser();
 
-
-
     const onClickSuggest = () => {
-        setAddress("茨城県つくば市天久保２丁目６−１")
         const url: string = process.env.REACT_APP_API_URL + "/place/suggest"
         console.log(url)
         axios.get(url, {params: {username: loginUser}})
         .then((res) => {
             if(res.status === 200){
-                console.log("success")
                 setPlace(res.data)
-                console.log(res.data)
             }
         }).catch(() => {
             console.log("error")
@@ -39,7 +32,6 @@ export const SuggestModal = memo((props: Props) => {
 
     useEffect(() => {
         onClickSuggest()
-        console.log("test")
     },[isOpen])
 
     return(

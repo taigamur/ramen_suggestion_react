@@ -10,7 +10,6 @@ export const usePoints  = () => {
     const { loginUser } = useLoginUser()
     
     const onSetPoints = useCallback(() => {
-        console.log("getPoints")
         const url: string = process.env.REACT_APP_API_URL + "/point/index"
         axios.get<Array<Point>>(url, {params: {username: loginUser}})
         .then((res) => {
@@ -21,6 +20,6 @@ export const usePoints  = () => {
         })
     },[])
 
-    return { points, onSetPoints }
+    return { points, setPoints, onSetPoints }
 
 }
