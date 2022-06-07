@@ -18,6 +18,7 @@ export const Home: VFC = memo(() => {
     const [ posts, setPosts ] = useState<Array<Post>>([])
 
     const onClickNewPost = useCallback(() => history.push("/post/new"),[]);
+    const onClickPlaceList = useCallback(() => history.push("/places"),[]);
 
     const getPosts = () => {
         console.log("user: " + loginUser)
@@ -37,12 +38,16 @@ export const Home: VFC = memo(() => {
 
     return(
         <>
-            <Box w="100%" align='center' pt={3} pb={3}>
+            <Box w="100%" align='center' pt={3}>
                 <Button colorScheme='teal' onClick={onOpen} autoFocus={false} variant='outline'>提案を見る</Button>
                 <SuggestModal onClose={onClose} isOpen={isOpen} />
             </Box>
 
-            <Box w="100%" align='center'>
+            <Box w="100%" align='center' pt={3}>
+                <Button colorScheme='teal' onClick={onClickPlaceList} autoFocus={false}>ラーメン店一覧</Button>
+            </Box>
+
+            <Box w="100%" align='center' pt={3}>
                 <Button colorScheme='teal' onClick={onClickNewPost} autoFocus={false}>新規投稿</Button>
             </Box>
 

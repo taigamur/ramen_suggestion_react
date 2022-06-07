@@ -15,7 +15,7 @@ export const PublicPoint: VFC = memo((props) => {
 
     const getPoints = () => {
         const url: string = process.env.REACT_APP_API_URL + "/public/point/index"
-        axios.get<Array<Point>>(url, {params: {userid: id}})
+        axios.get<Array<Point>>(url, {params: {user_id: id}})
         .then((res) => {
             console.log(res.data)
             setPoints(res.data)

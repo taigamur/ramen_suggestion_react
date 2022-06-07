@@ -12,7 +12,7 @@ export const PublicPointItem: VFC<Props> = memo((props) => {
 
     return(
         <Box as="button" w="80%" mx="auto" py={4} borderWidth='3px' borderRadius='lg'
-            h='auto' autoFocus={false} _hover={{bg: 'gray.200'}}
+            h='auto' autoFocus={false} 
         >
             <VStack>
             <Box>{point.place.name}</Box>
