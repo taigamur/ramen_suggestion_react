@@ -1,8 +1,7 @@
-import { Box, Button, Heading, Wrap, WrapItem } from "@chakra-ui/react";
-import {memo, useCallback, useEffect, useState, VFC} from "react"
+import { Box, Heading, Wrap, WrapItem } from "@chakra-ui/react";
+import {memo, useEffect, useState, VFC} from "react"
 import { usePoints } from "../../hooks/usePoints";
 import { PointItem } from "../molecules/PointItem";
-import { FaTwitter } from "react-icons/fa"
 import { TwitterIcon, TwitterShareButton } from "react-share";
 import { useLoginUser } from "../../providers/LoginUserProvider";
 import axios from "axios";
@@ -34,13 +33,13 @@ export const MyPoints: VFC = memo(() => {
 
     return(
         <>
-            <Box align='center' py={3}><Heading size='md'>ラーメン店の一覧とポイント登録  </Heading></Box>
+            <Box align='center' py={5}><Heading size='md'>ラーメン店の一覧とポイント登録  </Heading></Box>
 
-            <Box align='center' onClick={onClickUserId}>
+            {/* <Box align='center' onClick={onClickUserId}>
                 <TwitterShareButton url={url} title={title + title2 + "\n \n"} >
                     <TwitterIcon size={32}  round />
                 </TwitterShareButton>
-            </Box>
+            </Box> */}
      
             <Wrap>
                 {Array.from(points).map((point) => (

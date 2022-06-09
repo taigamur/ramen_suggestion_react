@@ -26,7 +26,7 @@ export const Router = () => {
                 {/* public */}
                 <Route exact path="/"><Login/></Route>
                 <Route exact path="/signup"><Signup/></Route>
-                <Route exact path="/user/:id/post/index"><PublicHeaderLayout><PublicPoint/></PublicHeaderLayout></Route>
+                <Route exact path="/user/:id/list"><PublicHeaderLayout><PublicPoint/></PublicHeaderLayout></Route>
                 
             </LoginUserProvider>
             <Route path="*"><Page404 /></Route>

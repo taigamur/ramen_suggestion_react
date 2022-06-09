@@ -4,20 +4,15 @@ import { PrimaryButton} from "../atoms/button/PrimaryButton"
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 import { useMessage } from "../../hooks/useMessage";
-import { useCookies } from "react-cookie";
-import { useLoginUser } from "../../providers/LoginUserProvider"
 import { firebaseApp } from "../../firebase"
 import { createUserWithEmailAndPassword } from "firebase/auth";
  
 export const Signup: VFC = memo(() => {
     const history = useHistory();
-    const [cookies, setCookie] = useCookies();
+
     
     const { showMessage } = useMessage();
     const [loading, setLoading] = useState(false)
-
-    const { setLoginUser } = useLoginUser();
-    const { loginUser } = useLoginUser();
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");

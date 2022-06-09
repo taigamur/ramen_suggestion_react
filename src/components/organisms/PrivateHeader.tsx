@@ -6,7 +6,7 @@ import { LoginUserContext } from "../../providers/LoginUserProvider";
 import { useMessage } from "../../hooks/useMessage";
 
 export const PrivateHeader: VFC = memo(() => {
-    const { showMessage } = useMessage()
+
     const { isOpen, onOpen, onClose} = useDisclosure();
 
     const history = useHistory();
@@ -15,10 +15,6 @@ export const PrivateHeader: VFC = memo(() => {
     const onClickHome = useCallback(() => history.push("/home"), []);
     const onClickA = useCallback(() => history.push("/user/info"), []);
     const onClickPlaces = useCallback(() => history.push("/places"), []);
-    // const onClickC = useCallback(() => {
-    //     const url = "/user/" + loginUser + "/post"
-    //     history.push(url)
-    // }, []);
 
     console.log(loginUser)
     
@@ -55,7 +51,6 @@ export const PrivateHeader: VFC = memo(() => {
             </>
         );
     }else{
-        // showMessage({title: "ログインしてください", status:"error"})
         return <Redirect to="/"/>;
     }
 })
