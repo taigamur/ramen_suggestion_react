@@ -33,26 +33,34 @@ export const Signup: VFC = memo(() => {
             createUserWithEmailAndPassword(firebaseApp.fireauth, email, password)
             .then(res => {
                 setLoading(false);
-                console.log(res.user)
                 showMessage({title: "ユーザー登録完了", status: "success"});
-                console.log("ok")
-                // go lang 
                 var params = new URLSearchParams();
                 params.append('name', email)
                 params.append('password', password)
                 const url: string = process.env.REACT_APP_API_URL + "/signup"
                 axios.post(url, params)
                 .then((res) => {
-                    console.log("go ok")
+
                 }).catch(() => {
-                    console.log("go err")
+
                 })
 
                 history.push("/home")
             })
             .catch(err => {
-                console.log(err.message)
-                console.log("error")
+
+                if(err.code === "auth/invalid-email"){
+                    showMessage({title: "不正なメールアドレスです", status: "error"})
+                }
+
+                if(err.code === "auth/email-already-in-use"){
+                    showMessage({title: "既に登録されています", status: "error"})
+                }
+
+                if(err.code === "auth/weak-password"){
+                    showMessage({title: "パスワードは6文字以上に設定してください", status:"error"})
+                }
+
                 setLoading(false)
             })
         }
