@@ -1,5 +1,5 @@
 import {memo, VFC, useState, ChangeEvent, useEffect } from "react"
-import { Box, Divider, Flex, Heading, Input, Stack, Link } from "@chakra-ui/react"
+import { Box, Divider, Flex, Heading, Input, Stack, Link, InputGroup, InputRightElement, Button } from "@chakra-ui/react"
 import { PrimaryButton} from "../atoms/button/PrimaryButton"
 import axios from "axios";
 import { Redirect, useHistory } from "react-router-dom";
@@ -24,7 +24,8 @@ export const Login: VFC = memo(() => {
 
     const [password, setPassword] = useState("")
     const onChangePassword = (e: ChangeEvent<HTMLInputElement>) => setPassword(e.target.value);
-
+    const [show, setShow] = useState(false)
+    const handleClick = () => setShow(!show)
 
     const onClickLoginRequest = () => {
         setLoading(true);
@@ -57,7 +58,14 @@ export const Login: VFC = memo(() => {
                         <Divider my={4}/>
                         <Stack spacing={6} py={4} px={10}>
                             <Input placeholder="メールアドレス" value={email} onChange={onChangeEmail}  />
-                            <Input placeholder="パスワード" value={password} onChange={onChangePassword}/>
+                            
+                            <InputGroup size='md'>
+                                <Input placeholder="パスワード" value={password} onChange={onChangePassword} type={show ? 'text' : 'password'}/>
+                                <InputRightElement width='4.5rem'>
+                                    <Button h='1.75rem' size='sm' onClick={handleClick}>{show ? '隠す' : '表示'}</Button>
+                                </InputRightElement>
+                            </InputGroup>
+                            
                             <PrimaryButton disabled={email === ""} loading={loading} onClick={onClickLoginRequest}>ログイン</PrimaryButton>
                         </Stack>
                         <Box pt={2} align='right'>

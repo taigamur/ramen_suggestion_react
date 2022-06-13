@@ -1,5 +1,5 @@
 import {memo, VFC, useState, ChangeEvent} from "react"
-import { Box, Divider, Flex, Heading, Input, Stack, Link } from "@chakra-ui/react"
+import { Box, Divider, Flex, Heading, Input, Stack, Link, InputRightElement, Button, InputGroup } from "@chakra-ui/react"
 import { PrimaryButton} from "../atoms/button/PrimaryButton"
 import axios from "axios";
 import { useHistory } from "react-router-dom";
@@ -17,6 +17,9 @@ export const Signup: VFC = memo(() => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [password2, setPassword2] = useState("");
+    const [show, setShow] = useState(false)
+    const handleClick = () => setShow(!show)
+
     const onChangeEmail = (e: ChangeEvent<HTMLInputElement>) => setEmail(e.target.value);
     const onChangePassword = (e: ChangeEvent<HTMLInputElement>) => setPassword(e.target.value);
     const onChangePassword2 = (e: ChangeEvent<HTMLInputElement>) => setPassword2(e.target.value);
@@ -72,8 +75,15 @@ export const Signup: VFC = memo(() => {
                 <Divider my={4}/>
                 <Stack spacing={6} py={4} px={10}>
                     <Input placeholder="メールアドレス" value={email} onChange={onChangeEmail} />
-                    <Input placeholder="パスワード" value={password} onChange={onChangePassword}/>
-                    <Input placeholder="パスワード(再入力)" value={password2} onChange={onChangePassword2}/>
+                    <InputGroup size='md'>
+                        <Input placeholder="パスワード" value={password} onChange={onChangePassword} type={show ? 'text' : 'password'}/>
+                        <InputRightElement width='4.5rem'>
+                            <Button h='1.75rem' size='sm' onClick={handleClick}>{show ? '隠す' : '表示'}</Button>
+                        </InputRightElement>
+                    </InputGroup>
+
+                    <Input placeholder="パスワード(再入力)" value={password2} onChange={onChangePassword2} type={show ? 'text' : 'password'}/>
+
                     <PrimaryButton disabled={email === ""} loading={loading} onClick={SignupRequest} >登録</PrimaryButton>
                 </Stack>
                 <Box pt={2} align='right'>
