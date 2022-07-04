@@ -41,7 +41,7 @@ export const DeleteAccountModal = (props: Props) => {
             axios.delete(url, {data: {username: loginUser}}).then(res => {
                 console.log(res.data)
             })
-            history.push("/login")
+            history.push("/")
         }).catch((error) => {
             console.log(error)
             showMessage({title: "アカウントの削除に失敗", status: "error"});
