@@ -4,7 +4,8 @@ import { useHistory } from "react-router-dom";
 import { useLoginUser } from "../../providers/LoginUserProvider";
 import { useMessage } from "../../hooks/useMessage";
 import { firebaseApp } from "../../firebase";
-import { Box, Button, Heading } from "@chakra-ui/react";
+import { Box, Button, Heading, useDisclosure } from "@chakra-ui/react";
+import { DeleteAccountModal } from "../organisms/DeleteAccountModal";
 export const UserInfo: VFC = memo(() => {
 
     const history = useHistory()
@@ -12,6 +13,8 @@ export const UserInfo: VFC = memo(() => {
     const { loginUser } = useLoginUser();
 
     const { showMessage } = useMessage();
+
+    const { isOpen, onOpen, onClose } = useDisclosure()
 
     const onClickLogout = () => {
         signOut(firebaseApp.fireauth)
@@ -37,6 +40,12 @@ export const UserInfo: VFC = memo(() => {
                     <p>メールアドレス</p>
                     <p>{loginUser}</p>
                 </Box>
+
+                <Box w="100%" align='center' pt={8}>
+                <Button colorScheme='red' onClick={onOpen} autoFocus={false} variant='outline'>アカウントの削除</Button>
+                <DeleteAccountModal onClose={onClose} isOpen={isOpen} />
+            </Box>
+
 
             </Box>
         </>
